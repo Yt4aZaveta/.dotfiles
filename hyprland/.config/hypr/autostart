@@ -14,7 +14,7 @@ dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
 
 # variables
-scripts=~/.scripts
+scripts=~/.local/bin/
 
 # gsettings
 gsettings set org.gnome.desktop.interface gtk-theme 'Tokyonight-Dark-BL-LB'

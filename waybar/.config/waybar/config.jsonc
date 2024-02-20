@@ -93,12 +93,12 @@
     },
     "custom/updates": {
         "format": "{}",
-        "exec": "~/.scripts/updates",
-        "on-click": "~/.scripts/updates update",
+        "exec": "~/.local/bin/updates",
+        "on-click": "~/.local/bin/updates update",
         "interval": 43200,
         "tooltip": true,
         // "tooltip-format": "{}",
-        // "exec-tooltip": "~/.scripts/updates tooltip"
+        // "exec-tooltip": "~/.local/bin/updates tooltip"
     },
     "custom/music": {
         "format": "{icon}{}",
@@ -109,7 +109,7 @@
         },
         "escape": true,
         "tooltip": true,
-        "exec": "~/.scripts/caway -b 10 -e",
+        "exec": "~/.local/bin/caway -b 10 -e",
         "return-type": "json",
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl previous",
@@ -252,26 +252,26 @@
     "custom/weather": {
         "tooltip": true,
         "format": "{}",
-        "exec": "~/.scripts/tools/expand weather",
+        "exec": "~/.local/bin/tools/expand weather",
         "return-type": "json"
     },
     "custom/ss": {
         "format": "{}",
-        "exec": "~/./scripts/tools/expand ss-icon",
+        "exec": "~/./local/bin/tools/expand ss-icon",
         "return-type": "json",
-        "on-click": "~/.scripts/screenshot_full"
+        "on-click": "~/.local/bin/screenshot_full"
     },
     "custom/cycle_wall": {
         "format": "{}",
-        "exec": "~/.scripts/tools/expand wall",
+        "exec": "~/.local/bin/tools/expand wall",
         "return-type": "json",
         // "interval": 1,
-        "on-click": "~/.scripts/tools/expand cycle",
-        "on-click-right": "~/.scripts/tools/expand cycler"
+        "on-click": "~/.local/bin/tools/expand cycle",
+        "on-click-right": "~/.local/bin/tools/expand cycler"
     },
     "custom/clipboard": {
         "format": "{}",
-        "exec": "~/.scripts/tools/expand clipboard",
+        "exec": "~/.local/bin/tools/expand clipboard",
         "return-type": "json",
         // Window position is managed in Hyperland config's windowrulev2
         "on-click": "pkill tofi || sleep 0.15 && cliphist list | tofi -c ~/.config/tofi/tofi.clip.conf | cliphist decode | wl-copy",
@@ -285,15 +285,15 @@
     },
     "custom/power": {
         "format": "{}",
-        // "exec": "~/.scripts/tools/expand power",
+        // "exec": "~/.local/bin/tools/expand power",
         "exec": "echo '{\"text\":\"⏻\",\"tooltip\":\"Power\"}'",
         "return-type": "json",
         "on-click": "~/.config/wlogout/launch.sh"
     },
     "custom/custom": {
         "format": "{}",
-        "exec": "~/.scripts/tools/expand arrow-icon",
-        "on-click": "~/.scripts/tools/expand_toolbar",
+        "exec": "~/.local/bin/tools/expand arrow-icon",
+        "on-click": "~/.local/bin/tools/expand_toolbar",
         "return-type": "json"
     },
     "hyprland/language": {
