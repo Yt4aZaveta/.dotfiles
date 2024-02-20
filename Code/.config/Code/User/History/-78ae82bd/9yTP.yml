@@ -1,0 +1,83 @@
+---
+## File: services.yml - services configuration
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-perf.json"
+    src: service-perf.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul
+
+
+## File: services.yml - services configuration
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-perf-eip.json"
+    src: service-perf-eip.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-perf27.json"
+    src: service-perf27.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-3rdprod.json"
+    src: service-3rdprod.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-prod.service.pulse.insure.json"
+    src: service-prod.service.pulse.insure.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul
+
+- name: Configure consul services
+  template:
+    dest: "{{ consul_configd_path }}/service-devtest.service.pulse.insure.json"
+    src: service-devtest.service.pulse.insure.json.j2
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    mode: 0644
+  # with_items: "{{ consul_services }}"
+  # loop_control:
+  #   loop_var: service_item
+  notify:
+    - restart consul

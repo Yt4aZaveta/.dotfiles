@@ -1,0 +1,45 @@
+---
+- name: Install openswan
+  yum:
+    name: openswan
+    state: present
+
+- name: Copy ipsec conf
+  template:
+    src: ipsec.conf.j2
+    dest: /etc/ipsec.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart ipsec
+
+- name: Create ipsec connection configs
+  template:
+    src: ipsec_conn.conf.j2
+    dest: "{{ ipsec_path }}/{{ item.name }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ ipsec_settings }}"
+  notify:
+    - restart ipsec
+
+- name: Create ipsec secret new
+  template:
+    src: ipsec.secrets.j2
+    dest: "{{ ipsec_path }}/{{ item.name }}.secrets"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ ipsec_settings }}"
+  notify:
+    - restart ipsec
+
+# - name: Start ipsec service
+#   systemd:
+#     name: ipsec
+#     state: started
+#     enabled: yes

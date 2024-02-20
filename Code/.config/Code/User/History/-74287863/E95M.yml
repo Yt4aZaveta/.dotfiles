@@ -1,0 +1,1512 @@
+---
+# defaults file for ipsec
+zabbix_agent_dir: /etc/zabbix/zabbix_agentd.d
+ipsec_path: /etc/ipsec.d
+
+sysctl:
+  net.ipv4.conf.all.accept_redirects: 0
+  net.ipv6.conf.all.accept_redirects: 0
+  net.ipv4.conf.eth0.accept_redirects: 0
+  net.ipv6.conf.eth0.accept_redirects: 0
+  net.ipv4.conf.all.send_redirects: 0
+  net.ipv4.conf.all.accept_source_route: 0
+  net.ipv6.conf.all.accept_source_route: 0
+  net.ipv4.conf.all.log_martians: 1
+  net.ipv4.ip_forward: 1
+  net.ipv4.conf.default.rp_filter: 0
+  net.ipv4.conf.all.rp_filter: 0
+  net.ipv4.conf.eth0.rp_filter: 0
+  net.ipv4.conf.ip_vti0.rp_filter: 0
+  net.ipv4.conf.eth0.send_redirects: 0
+
+#IPSec conf
+ipsec_croc_private_left: "{{ ansible_default_ipv4.address }}" # Default value for leftid
+ipsec_croc_public_left: 194.242.120.97
+ipsec_croc_vpc_leftsubnet: "{172.31.0.0/16}" # Default value for leftsubnets
+
+## Default values for IPSec configurations
+## right, rightid, rightsubnets you must necessary define in right_connection_parameters block
+##
+# authby=secret
+# auto=start
+# ike=aes256-sha1;modp1024
+# ikev2=permit
+# ikelifetime=86400s
+# keyexchange=ike
+# phase2=esp
+# phase2alg=aes256-sha1;modp1024
+# salifetime=3600s
+# compress=no
+# pfs=yes
+# rekey=yes
+# type=tunnel
+#
+# dpdaction=restart
+# dpddelay=10s
+# dpdtimeout=30s
+#
+# left=172.31.33.4
+# leftid=172.31.33.4
+# leftsubnets={172.31.0.0/16}
+
+ipsec_settings:
+   - name: croc-tele2
+     psk_key: 4FbtYtj4xv25y+ddbfW8UkbBB5o/KhRySXoA7QYJpV0=
+     ikev2: insist
+     ike: aes256-sha512;dh20
+     phase2alg: aes256-sha512;dh20
+     dpdenabled: False
+     right_connection_parameters:
+       right: 194.176.96.4
+       rightid: 194.176.96.4
+       rightsubnets: "{10.0.0.0/8}"
+   - name: croc-nmk
+     psk_key: bcTk3tGvvGqj/ahvpiFADAKHhz6jfWuo+SFWQMaBnnQ=
+     right_connection_parameters:
+         right: 149.126.168.156
+         rightid: 149.126.168.156
+         rightsubnets: "{192.168.20.0/24,172.16.10.0/24}"
+   - name: croc-nmk2
+     psk_key: SFWQMaBnnQ=bcTk3tGvvGqj/ahvpiFADAKHhz6jfWuo+
+     leftsubnets: "{172.31.0.0/16,10.179.36.53/32,10.179.36.54/32,10.179.36.172/32,10.179.36.140/32,10.179.36.170/32,10.179.36.139/32,10.179.36.29/32,10.179.36.30/32,10.179.36.169/32,10.179.56.50/32,10.179.35.210/32,10.12.15.25/32}"
+     right_connection_parameters:
+         right: 82.116.45.249
+         rightid: 82.116.45.249
+         rightsubnets: "{192.168.30.0/24}"
+   - name: croc-idworld
+     psk_key: FRCc9MmmkLlenDnnw+uM6UQMNdcSDewQ/UaQIZE+mfE=
+     leftsubnets: "{172.31.179.39/32,172.31.179.167/32,172.31.179.140/32,172.31.179.170/32,172.31.37.4/32,172.31.179.169/32,172.31.179.29/32,172.31.179.30/32}"
+     right_connection_parameters:
+         right: 81.177.167.207
+         rightid: 81.177.167.207
+         rightsubnet: 192.168.1.100/32
+   - name: croc-setpartnerstv
+     psk_key: jLANlJuKmERJtqeInEnT09hIAcX5SAGeC5KL4X+6ByI=
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{192.168.253.0/24}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 217.73.59.86
+         rightid: 217.73.59.86
+         rightsubnet: 192.168.252.0/24
+   - name: croc-gpb-1
+     psk_key: Ts8SQQ2O3XNjfZB8CrtZjQGuvA3pxYYF1x6Hh1AbgbU=
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.115
+         rightid: 195.225.38.115
+         rightsubnet: 0.0.0.0/0
+         mark: 2/0xffffffff
+         vti-interface: vpn-gpb-1
+         vti-routing: "no"
+         leftvti: 10.99.34.2/30
+   - name: croc-gpb-2
+     psk_key: Ts8SQQ2O3XNjfZB8CrtZjQGuvA3pxYYF1x6Hh1AbgbU=
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.116
+         rightid: 195.225.38.116
+         rightsubnet: 0.0.0.0/0
+         mark: 1/0xffffffff
+         vti-interface: vpn-gpb-2
+         vti-routing: "no"
+         leftvti: 10.99.36.2/30
+   - name: croc-gpb-3
+     psk_key: DEp2iAzagEMRkNrp18pxzUH76JQ7yEFi
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.215
+         rightid: 195.225.38.215
+         rightsubnet: 0.0.0.0/0
+         mark: 6/0xffffffff
+         vti-interface: vpn-gpb-3
+         vti-routing: "no"
+         leftvti: 172.20.218.54/30
+   - name: croc-gpb-4
+     psk_key: DEp2iAzagEMRkNrp18pxzUH76JQ7yEFi
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.216
+         rightid: 195.225.38.216
+         rightsubnet: 0.0.0.0/0
+         mark: 5/0xffffffff
+         vti-interface: vpn-gpb-4
+         vti-routing: "no"
+         leftvti: 172.20.219.54/30
+   - name: croc-gpb-5
+     psk_key: 78NYFh7wwnqurmEDI96GcOL430iE31kn
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.228
+         rightid: 195.225.38.228
+         rightsubnet: 0.0.0.0/0
+         mark: 8/0xffffffff
+         vti-interface: vpn-gpb-5
+         vti-routing: "no"
+         leftvti: 172.20.192.82/30
+   - name: croc-gpb-6
+     psk_key: 78NYFh7wwnqurmEDI96GcOL430iE31kn
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftsubnets: "{0.0.0.0/0}"
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.225.38.229
+         rightid: 195.225.38.229
+         rightsubnet: 0.0.0.0/0
+         mark: 7/0xffffffff
+         vti-interface: vpn-gpb-6
+         vti-routing: "no"
+         leftvti: 172.20.192.210/30
+   - name: croc-gazfond
+     psk_key: oEOj4OF/jADyXx5OcLVspsryjeGX3MLC1eAK7UyPWnc=
+     leftid: "{{ ipsec_croc_public_left }}"
+     right_connection_parameters:
+         right: 195.151.48.132
+         rightid: 195.151.48.132
+         rightsubnet: 192.168.99.0/24
+   - name: croc-a2p-main
+     psk_key: yhhF+IOxW12G+o5/K4A4n+x8smQ=
+     ike: 3des-sha1;modp1024
+     phase2alg: 3des-sha1;modp1024
+     salifetime: 28800s
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.25/32,172.31.16.16/32,172.31.16.20/32,192.168.123.10/32,172.31.77.4/32,172.31.77.5/32}"
+     right_connection_parameters:
+         right: 195.19.216.1
+         rightid: 195.19.216.1
+         rightsubnets: "{195.19.216.18/32,195.19.216.100/32}"
+   - name: croc-a2p-reserve
+     psk_key: yhhF+IOxW12G+o5/K4A4n+x8smQ=
+     ike: 3des-sha1;modp1024
+     phase2alg: 3des-sha1;modp1024
+     salifetime: 28800s
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.25/32,172.31.16.16/32,172.31.16.20/32,192.168.123.10/32,172.31.77.4/32,172.31.77.5/32}"
+     right_connection_parameters:
+         right: 193.232.44.45
+         rightid: 193.232.44.45
+         rightsubnets: "{193.232.44.50/32}"
+   - name: croc-tpk-test
+     psk_key: FW6wwzzlzGOIY+ZQHm1brINHLXXsOFVnMae5IovhGSU=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.138.1.133/32}"
+     right_connection_parameters:
+         right: 192.146.141.17
+         rightid: 192.146.141.17
+         rightsubnet: 10.138.1.96/27
+   - name: croc-tpk-1
+     psk_key: FW6wwzzlzGOIY+ZQHm1brINHLXXsOFVnMae5IovhGSU=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{0.0.0.0/0}"
+     ike: aes128-sha1;modp1024
+     right_connection_parameters:
+         right: 192.146.141.19
+         rightid: 192.146.141.19
+         rightsubnet: 0.0.0.0/0
+         mark: 4/0xffffffff
+         vti-interface: vpn-tpk-1
+         vti-routing: "no" 
+         leftvti: 10.138.2.134/30
+   - name: croc-tpk-2
+     psk_key: FW6wwzzlzGOIY+ZQHm1brINHLXXsOFVnMae5IovhGSU=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{0.0.0.0/0}"
+     right_connection_parameters:
+         right: 192.146.140.19
+         rightid: 192.146.140.19
+         rightsubnet: 0.0.0.0/0
+         mark: 3/0xffffffff
+         vti-interface: vpn-tpk-2
+         vti-routing: "no" 
+         leftvti: 10.138.2.130/30
+   - name: croc-mc2
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: 172.31.36.4/32
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-mc2-2
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: 172.31.179.167/32
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-mc2-3
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.48.12/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32   
+   - name: croc-mc2-4
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.72.8/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-mc2-5
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.13/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-mc2-6
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.51/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-mc2-7
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.51/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.255.9.2/32
+   # CS-87965
+   - name: croc-mc2-8
+     psk_key: LwtCH3FSg0WZlkKwoEwzvtPMICkL9elAUj24Ob7vwao=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.0.60/32}"
+     right_connection_parameters:
+         right: 77.223.109.99
+         rightid: 77.223.109.99
+         rightsubnet: 10.254.1.2/32
+   - name: croc-rtk-main
+     psk_key: Y+w1sjgTEKtyE2N0eXgZZWzP4y8RiaLpaXccCOElIXY=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.179.36.29/32,10.179.36.140/32,10.12.15.25/32,172.31.77.4/32,172.31.77.5/32}"
+     right_connection_parameters:
+         right: 91.232.172.245
+         rightid: 91.232.172.245
+         rightsubnet: 10.141.100.0/24
+   - name: croc-rtk-reserve
+     psk_key: Y+w1sjgTEKtyE2N0eXgZZWzP4y8RiaLpaXccCOElIXY=
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.179.36.29/32,10.179.36.140/32,10.12.15.25/32,172.31.77.4/32,172.31.77.5/32}"
+     right_connection_parameters:
+         right: 91.232.173.245
+         rightid: 91.232.173.245
+         rightsubnet: 10.141.101.0/24
+   - name: croc-mobileparktest2
+     psk_key: FhKwCcrz2w9eMaS5ggkiaAWRKArpCVl8XIF=
+     ikev2: insist
+     ike: aes256-sha512;dh20
+     phase2alg: aes256-sha512;dh20
+     dpdenabled: False
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.36.4/32,10.179.36.39/32,10.179.36.167/32,10.179.36.47/32,10.179.36.48/32,10.12.56.20/32,195.19.216.100/32,195.19.216.101/32,193.232.44.66/32,193.232.44.67/32,10.77.47.35/32,172.31.33.4/32,172.31.33.20/32,172.31.33.36/32, 172.31.255.254}"
+     right_connection_parameters:
+         right: 178.170.193.93
+         rightid: 178.170.193.93
+         rightsubnets: "{192.168.140.81/32,192.168.123.10/32,192.168.123.248/32}"
+   - name: croc-seven-tech
+     psk_key: Mqg4N6pwXcqvqCCknXEaeY5kKfs5Hn6T
+     ikev2: insist
+     ike: aes256-sha2;dh20
+     phase2alg: aes256-sha2_256;dh20
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.36.4/32,172.31.33.4/32,172.31.33.20/32,172.31.33.36/32}"
+     right_connection_parameters:
+         right: 194.190.55.10
+         rightid: 194.190.55.10
+         rightsubnet: 172.26.84.96/29
+   - name: croc-efin
+     psk_key: wrVQobWIkFCyzttbwX8JqJgaTuZssBmr
+     ike: aes256-sha1;modp1024
+     phase2alg: aes256-sha1;modp1024
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{172.31.37.4/32}"
+     right_connection_parameters:
+         right: 82.202.162.4
+         rightid: 82.202.162.4
+         rightsubnet: 192.168.38.10/32         
+   - name: croc-alphacontract
+     psk_key: kQKs8uHoOFmrW4S12tj307vYlf91Glg0
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: 10.179.36.140/32
+     right_connection_parameters:
+         right: 95.215.176.218
+         rightid: 95.215.176.218
+         rightsubnet: 192.168.212.164/32
+  #  - name: croc-svyaznoy
+  #    psk_key: KshfdPu4yth7f97b798gfT9FY
+  #    ike: aes128-sha1;modp1024
+  #    phase2alg: aes128-sha1;modp1024
+  #    leftid: "{{ ipsec_croc_public_left }}"
+  #    leftsubnets: "{10.179.36.0/24}"
+  #    right_connection_parameters:
+  #        right: 91.199.80.190
+  #        rightid: 91.199.80.190
+  #        rightsubnet: 10.192.16.0/24
+  #  - name: croc-svyaznoy-1
+  #    psk_key: KshfdPu4yth7f97b798gfT9FY
+  #    ike: aes128-sha1;modp1024
+  #    phase2alg: aes128-sha1;modp1024
+  #    leftid: "{{ ipsec_croc_public_left }}"
+  #    leftsubnets: "{172.31.33.4/32}"
+  #    right_connection_parameters:
+  #        right: 91.199.80.190
+  #        rightid: 91.199.80.190
+  #        rightsubnet: 10.192.16.0/24
+   #CS-76005
+   #- name: croc-bitcom
+     #psk_key: dIfSyoJGEf8six9xVAOLL7hO
+     #ike: aes256-sha1;modp1024
+     #phase2alg: aes256-sha1;modp1024
+     #leftid: "{{ ipsec_croc_public_left }}"
+     #leftsubnets: "{10.179.36.39/32,10.179.36.167/32,10.179.36.140/32}"
+     #right_connection_parameters:
+         #right: 213.171.50.239
+         #rightid: 213.171.50.239
+         #rightsubnets: "{192.168.1.116/32,192.168.1.44/32}"
+  #CS-81631
+   - name: croc-septima
+     psk_key: =jaH]8n_dPG`{kfNI.3~K$pk
+     ike: aes256-sha1;modp1024
+     phase2alg: aes256-sha1;modp1024
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.179.36.39/32,10.179.36.167/32}"
+     right_connection_parameters:
+         right: 83.137.53.7
+         rightid: 83.137.53.7
+         rightsubnets: "{192.168.82.7/32,172.18.0.2/32}"
+  #CS-82038
+   - name: croc-criptos
+     psk_key: fgdE5s&u7r5tfDf2W
+     ike: aes256-sha1;modp1024
+     phase2alg: aes256-sha1;modp1024
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.179.36.39/32,10.179.36.167/32,10.179.36.140/32,10.179.36.170/32}"
+     right_connection_parameters:
+         right: 89.208.117.210
+         rightid: 89.208.117.210
+         rightsubnets: 192.168.51.0/24
+   - name: croc-k7
+     psk_key: 5mBvPK7Kj8gvXp6BmUI9ayAUWbKzB75eTKe7Pct7xMr2I888aRx5QHaPAzAGxZTeYpTX7RU5CXRcRhVskxh6YZPUTGWkDHfk65TCjy7JCISpua7F42aHpehn87
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: "{10.179.36.39/32,10.179.36.167/32}"
+     right_connection_parameters:
+         right: 194.226.164.248
+         rightid: 194.226.164.248
+         rightsubnets: "{172.20.0.0/24,172.21.0.0/24}"
+  #CS-138428
+   - name: croc-eastwind
+     psk_key: 9h$:&9J%)Z&0
+     ike: aes256-sha1;modp1024
+     phase2alg: aes256-sha1;modp1024
+     leftid: "{{ ipsec_croc_public_left }}"
+     leftsubnets: 172.31.102.0/24
+     right_connection_parameters:
+         right: 193.200.21.10
+         rightid: 193.200.21.10
+         rightsubnets: 172.25.21.158/32
+# Quagga
+zebra_password: 1Qazxsw@
+zebra_enable_password: Compaq12#
+bgp_asn: 65450
+bgp_customer_gpb_asn: 65451
+customer_gpb_neighbor_1: 10.99.34.1
+customer_gpb_neighbor_2: 10.99.36.1
+bgp_gpb_network_advertise: 10.99.40.0/28
+bgp_asn_tpk: 65250
+bgp_customer_tpk_asn: 65003
+customer_tpk_neighbor_1: 10.138.2.129
+customer_tpk_neighbor_2: 10.138.2.133
+bgp_tpk_network_advertise: 10.138.2.136/29
+bgp_asn_gpb3_4: 65362
+bgp_asn_gpb5_6: 65362
+bgp_customer_gpb3_4_asn: 65361
+bgp_customer_gpb5_6_asn: 65361
+customer_gpb3_4_neighbor_1: 172.20.218.53
+customer_gpb3_4_neighbor_2: 172.20.219.53
+customer_gpb5_6_neighbor_1: 172.20.192.81
+customer_gpb5_6_neighbor_2: 172.20.192.209
+bgp_gpb3_4_network_advertise: 172.20.220.64/29
+bgp_gpb5_6_network_advertise: 172.20.194.104/29
+
+
+# Iptables
+iptables_chains:
+  - name: 'FORWARD'
+    rules:
+      - comment: 'Allow FORWARD vpn-gpb-1'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-1'
+      - comment: 'Allow FORWARD vpn-gpb-2'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-2'
+      - comment: 'Allow FORWARD vpn-gpb-1'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-1'
+      - comment: 'Allow FORWARD vpn-gpb-2'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-2'
+      - comment: 'Allow FORWARD vpn-gpb-3'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-3'
+      - comment: 'Allow FORWARD vpn-gpb-4'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-4'
+      - comment: 'Allow FORWARD vpn-gpb-3'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-3'
+      - comment: 'Allow FORWARD vpn-gpb-4'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-4'
+      - comment: 'Allow FORWARD vpn-gpb-5'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-5'
+      - comment: 'Allow FORWARD vpn-gpb-6'
+        jump: 'ACCEPT'
+        state: 'present'
+        in_interface: 'vpn-gpb-6'
+      - comment: 'Allow FORWARD vpn-gpb-5'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-5'
+      - comment: 'Allow FORWARD vpn-gpb-6'
+        jump: 'ACCEPT'
+        state: 'present'
+        out_interface: 'vpn-gpb-6'
+  - name: 'POSTROUTING'
+    rules:
+# GPB rules
+      - comment: 'SNAT mvno-apigt-p01'
+        table: 'nat'
+        source: 172.31.0.15
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.3
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mvno-apigt-p02'
+        table: 'nat'
+        source: 172.31.16.10
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.4
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mvno-apigt-t01'
+        table: 'nat'
+        source: 172.31.16.17
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.11
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mvno-pnb-p01'
+        table: 'nat'
+        source: 172.31.0.25
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.1
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mvno-pnb-p02'
+        table: 'nat'
+        source: 172.31.16.16
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.2
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mvno-pnb-t01'
+        table: 'nat'
+        source: 172.31.16.20
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_source: 10.99.40.10
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT loyal-app-prod'
+        table: 'nat'
+        source: 172.31.78.7
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.8
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT loyal-db-prod'
+        table: 'nat'
+        source: 172.31.78.6
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.7
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT loyal-db-test'
+        table: 'nat'
+        source: 172.31.78.5
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.6
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT loyal-app-test'
+        table: 'nat'
+        source: 172.31.78.4
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.5
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT key-app-test'
+        table: 'nat'
+        source: 172.31.80.15
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.13
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT key-db-test'
+        table: 'nat'
+        source: 172.31.80.16
+        destination: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_source: 10.99.40.14
+        jump: 'SNAT'
+        state: 'present'
+        #CS-61071
+      - comment: 'SNAT gpb3-4 to seven-tech'
+        table: 'nat'
+        source: 10.200.171.0/25 
+        destination: 172.26.84.96
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT gpb5-6 to seven-tech'
+        table: 'nat'
+        source: 10.200.171.128/25
+        destination: 172.26.84.96
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# IDWorld rules
+      - comment: 'SNAT idworld to tele2'
+        table: 'nat'
+        source: 192.168.1.100
+        destination: 10.179.36.39,10.179.36.167,10.179.36.140,10.179.36.170,10.179.36.169,10.179.36.29,10.179.36.30
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# Gazfond rules
+      - comment: 'SNAT gazfond to tele2'
+        table: 'nat'
+        source: 192.168.99.0/24
+        destination: 10.179.36.39,10.179.36.167,10.179.36.140,10.179.36.170
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# Setpartnerstv rules
+      - comment: 'SNAT lb-comp1p-1'
+        table: 'nat'
+        source: 172.31.0.7
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.1
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT lb-vol51-2'
+        table: 'nat'
+        source: 172.31.16.7
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.2
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT api-comp1p-1'
+        table: 'nat'
+        source: 172.31.0.13
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.3
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT api-vol51-2'
+        table: 'nat'
+        source: 172.31.16.8
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.4
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT lmx-stage-app'
+        table: 'nat'
+        source: 172.31.65.4
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.9
+        jump: 'SNAT'
+        state: 'present'       
+      - comment: 'SNAT website-app-preprod'
+        table: 'nat'
+        source: 172.31.79.10
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.10
+        jump: 'SNAT'
+        state: 'present' 
+      - comment: 'SNAT website-vm'
+        table: 'nat'
+        source: 172.31.79.4
+        destination: 192.168.252.0/24
+        to_source: 192.168.253.11
+        jump: 'SNAT'
+        state: 'present' 
+      - comment: 'SNAT setpartnerstv to tele2'
+        table: 'nat'
+        source: 192.168.252.0/24
+        destination: 10.179.36.39,10.179.36.167,10.179.36.140,10.179.36.170
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# tpk-test rules
+      - comment: 'SNAT ml-sftp-p01'
+        table: 'nat'
+        source: 172.31.37.4,172.31.16.8,172.31.0.13,172.31.16.7,172.31.0.7,172.31.36.4,172.31.36.5,172.31.37.5
+        destination: 10.138.1.96/27
+        to_source: 10.138.1.133
+        jump: 'SNAT'
+        state: 'present'
+  # tpk-rules
+      - comment: 'SNAT tpk-ml-prod-p01'
+        table: 'nat'
+        source: 172.31.36.5
+        destination: 10.138.0.15
+        to_source: 10.138.2.137
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT tpk-ml-prod-p02'
+        table: 'nat'
+        source: 172.31.37.5
+        destination: 10.138.0.15
+        to_source: 10.138.2.138
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT tpk-ml-sftp-p01'
+        table: 'nat'
+        source: 172.31.37.4
+        destination: 10.138.0.15
+        to_source: 10.138.2.139
+        jump: 'SNAT'
+        state: 'present'
+# mc2 rules
+      - comment: 'SNAT mc2 to tele2'
+        table: 'nat'
+        source: 10.254.1.2
+        destination: 10.179.36.167
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# rtk rules
+      - comment: 'SNAT rtk to tele2'
+        table: 'nat'
+        source: 10.141.100.0/24
+        destination: 10.179.36.29,10.179.36.140,10.12.15.25
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT bitrix24'
+        table: 'nat'
+        source: 10.141.100.0/24
+        destination: 172.31.77.4
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT bitrix24-test'
+        table: 'nat'
+        source: 10.141.100.0/24
+        destination: 172.31.77.5
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+        
+# seven-tech rules
+      - comment: 'SNAT gpb to seven-tech'
+        table: 'nat'
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47
+        destination: 172.26.84.96
+        to_source: 172.31.36.4
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT openvpn to seven-tech'
+        table: 'nat'
+        source: 172.31.0.16
+        destination: 172.26.84.96
+        to_source: 172.31.36.4
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT nmk to seven-tech'
+        table: 'nat'
+        source: 192.168.20.0/24,172.16.10.0/24
+        destination: 172.26.84.96
+        to_source: 172.31.36.4
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT smartnotify to seven-tech'
+        table: 'nat'
+        source: 172.31.77.4,172.31.0.13,172.31.79.4,172.31.34.4
+        destination: 172.26.84.96/29
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# mobilepark rules
+      - comment: 'SNAT mobilepark to tele2'
+        table: 'nat'
+        source: 192.168.140.81/32,192.168.123.10/32
+        destination: 10.179.36.29,10.179.36.140,10.12.15.25,10.12.56.20
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+      - comment: 'SNAT mobilepark to tele2'
+        table: 'nat'
+        source: 192.168.140.81/32,192.168.123.10/32,192.168.123.248/32
+        destination: 10.179.36.39,10.179.36.167,10.77.47.35
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+#k7 rules
+      - comment: 'SNAT k7 to tele2'
+        table: 'nat'
+        source: 172.20.0.0/24,172.21.0.0/24
+        destination: 10.179.36.167/32,10.179.36.39/32
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+#a2p rules
+      - comment: 'SNAT crm-bitrix to a2p'
+        table: 'nat'
+        source: 172.31.77.4,172.31.77.5
+        destination: 195.19.216.100/32,195.19.216.101/32
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+      
+      - comment: 'SNAT mvno-openvpn a2p-admin '
+        table: 'nat'
+        source: 172.31.0.16
+        destination: 195.19.216.34
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+#tele2 rules
+      - comment: 'SNAT tele2 to mobilepark'
+        table: 'nat'
+        source: 10.179.36.47,10.179.36.48 
+        destination: 192.168.123.10 
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# alphacontract rules
+      - comment: 'SNAT alphacontract to tele2'
+        table: 'nat'
+        source: 192.168.212.164
+        destination: 10.179.36.140
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+# svyaznoy rules
+      # - comment: 'SNAT svyaznoy to tele2'
+      #   table: 'nat'
+      #   source: 10.192.16.0/24
+      #   destination: 10.179.36.167/32,10.179.36.39/32,10.179.36.140/32,10.179.36.170/32
+      #   to_source: "{{ ansible_default_ipv4.address }}"
+      #   jump: 'SNAT'
+      #   state: 'present'
+#bitcom rules
+      #- comment: 'SNAT bitcom to tele2'
+        #table: 'nat'
+        #source: 192.168.1.116/32,192.168.1.44/32
+        #destination: 10.179.36.167/32,10.179.36.39/32,10.179.36.140/32
+        #to_source: "{{ ansible_default_ipv4.address }}"
+        #jump: 'SNAT'
+        #state: 'present'
+#criptos rules
+      - comment: 'SNAT criptos to tele2'
+        table: 'nat'
+        source: 192.168.51.0/24
+        destination: 10.179.36.167/32,10.179.36.39/32,10.179.36.140/32,10.179.36.170/32
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+#septima rules
+      - comment: 'SNAT septima to tele2'
+        table: 'nat'
+        source: 192.168.82.7/32,172.18.0.2/32
+        destination: 10.179.36.167/32,10.179.36.39/32
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+#nmk2 rules
+      - comment: 'SNAT nmk2 to tele2'
+        table: 'nat'
+        source: 192.168.30.0/24
+        destination: 10.0.0.0/8
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+        
+      - comment: 'SNAT nmk2 to gpbm'
+        table: 'nat'
+        source: 192.168.30.0/24
+        destination: 172.31.0.57/32,172.31.0.59/32,172.31.0.26/32
+        to_source: "{{ ansible_default_ipv4.address }}"
+        jump: 'SNAT'
+        state: 'present'
+
+  - name: 'PREROUTING'
+    rules:
+# GPB rules
+      - comment: 'DNAT mvno-apigt-p01'
+        table: 'nat'
+        destination: 10.99.40.3
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.0.15
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mvno-apigt-p02'
+        table: 'nat'
+        destination: 10.99.40.4
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.16.10
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mvno-apigt-t01'
+        table: 'nat'
+        destination: 10.99.40.11
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.16.17
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mvno-pnb-p01'
+        table: 'nat'
+        destination: 10.99.40.1
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.0.25
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mvno-pnb-p02'
+        table: 'nat'
+        destination: 10.99.40.2
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.16.16
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mvno-pnb-t01'
+        table: 'nat'
+        destination: 10.99.40.10
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.179.36.218,10.179.36.226,10.179.36.227
+        to_destination: 172.31.16.20
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT loyal-app-prod'
+        table: 'nat'
+        destination: 10.99.40.8
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.78.7
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT loyal-db-prod'
+        table: 'nat'
+        destination: 10.99.40.7
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.78.6
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT loyal-db-test'
+        table: 'nat'
+        destination: 10.99.40.6
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.78.5
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT loyal-app-test'
+        table: 'nat'
+        destination: 10.99.40.5
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.78.4
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT key-app-test'
+        table: 'nat'
+        destination: 10.99.40.13
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.80.15
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT key-db-test'
+        table: 'nat'
+        destination: 10.99.40.14
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47,10.169.234.0/28
+        to_destination: 172.31.80.16
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT seven-tech'
+        table: 'nat'
+        destination: 10.99.40.12
+        source: 195.225.38.193,195.225.38.209,10.179.68.103,10.179.68.104,10.179.68.105,10.179.36.45,10.179.36.46,10.179.36.47
+        to_destination: 172.26.84.96
+        jump: 'DNAT'
+        state: 'present'      
+        #CS-61071
+      - comment: 'DNAT gpb3-4 to seven-tech'
+        table: 'nat'
+        destination: 172.20.220.66
+        source: 10.200.171.0/25
+        to_destination: 172.26.84.96:3207
+        destination_port: 27752
+        protocol: tcp
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT gpb5-6 to seven-tech'
+        table: 'nat'
+        destination: 172.20.194.105
+        source: 10.200.171.128/25
+        to_destination: 172.26.84.96:3207
+        destination_port: 27752
+        protocol: tcp
+        jump: 'DNAT'
+        state: 'present'
+ # IDWorld rules
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.39
+        source: 192.168.1.100
+        to_destination: 10.179.36.39
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.167
+        source: 192.168.1.100
+        to_destination: 10.179.36.167
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.140
+        source: 192.168.1.100
+        to_destination: 10.179.36.140
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.170
+        source: 192.168.1.100
+        to_destination: 10.179.36.170
+        jump: 'DNAT'
+        state: 'present'
+        #CS-69777
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.169
+        source: 192.168.1.100
+        to_destination: 10.179.36.169
+        jump: 'DNAT'
+        state: 'present'
+        #CS-69777(2)
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.29
+        source: 192.168.1.100
+        to_destination: 10.179.36.29
+        jump: 'DNAT'
+        state: 'present'
+        #CS-69777(2)
+      - comment: 'DNAT idworld to tele2'
+        table: 'nat'
+        destination: 172.31.179.30
+        source: 192.168.1.100
+        to_destination: 10.179.36.30
+        jump: 'DNAT'
+        state: 'present'
+# Gazfond rules
+      - comment: 'DNAT gazfond to tele2'
+        table: 'nat'
+        destination: 172.31.179.39
+        source: 192.168.99.0/24
+        to_destination: 10.179.36.39
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT gazfond to tele2'
+        table: 'nat'
+        destination: 172.31.179.167
+        source: 192.168.99.0/24
+        to_destination: 10.179.36.167
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT gazfond to tele2'
+        table: 'nat'
+        destination: 172.31.179.140
+        source: 192.168.99.0/24
+        to_destination: 10.179.36.140
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT gazfond to tele2'
+        table: 'nat'
+        destination: 172.31.179.170
+        source: 192.168.99.0/24
+        to_destination: 10.179.36.170
+        jump: 'DNAT'
+        state: 'present'
+# Setpartnerstv rules
+      - comment: 'DNAT lb-comp1p-1'
+        table: 'nat'
+        destination: 192.168.253.1
+        source: 192.168.252.0/24
+        to_destination: 172.31.0.7
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT lb-vol51-2'
+        table: 'nat'
+        destination: 192.168.253.2
+        source: 192.168.252.0/24
+        to_destination: 172.31.16.7
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT api-comp1p-1'
+        table: 'nat'
+        destination: 192.168.253.3
+        source: 192.168.252.0/24
+        to_destination: 172.31.0.13
+        jump: 'DNAT'
+        state: 'present'     
+      - comment: 'DNAT api-vol51-2'
+        table: 'nat'
+        destination: 192.168.253.4
+        source: 192.168.252.0/24
+        to_destination: 172.31.16.8
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT lmx-stage-app'
+        table: 'nat'
+        destination: 192.168.253.9
+        source: 192.168.252.0/24
+        to_destination: 172.31.65.4
+        jump: 'DNAT'
+        state: 'present' 
+      - comment: 'DNAT website-app-preprod'
+        table: 'nat'
+        destination: 192.168.253.10
+        source: 192.168.252.0/24
+        to_destination: 172.31.79.10
+        jump: 'DNAT'
+        state: 'present' 
+      - comment: 'DNAT website-vm'
+        table: 'nat'
+        destination: 192.168.253.11
+        source: 192.168.252.0/24
+        to_destination: 172.31.79.4
+        jump: 'DNAT'
+        state: 'present' 
+      - comment: 'DNAT setpartnerstv to tele2'
+        table: 'nat'
+        destination: 192.168.253.5
+        source: 192.168.252.0/24
+        to_destination: 10.179.36.39
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT setpartnerstv to tele2'
+        table: 'nat'
+        destination: 192.168.253.6
+        source: 192.168.252.0/24
+        to_destination: 10.179.36.167
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT setpartnerstv to tele2'
+        table: 'nat'
+        destination: 192.168.253.7
+        source: 192.168.252.0/24
+        to_destination: 10.179.36.140
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT setpartnerstv to tele2'
+        table: 'nat'
+        destination: 192.168.253.8
+        source: 192.168.252.0/24
+        to_destination: 10.179.36.170
+        jump: 'DNAT'
+        state: 'present'
+# tpk-test rules
+      - comment: 'DNAT tpk to ml-sftp'
+        table: 'nat'
+        destination: 10.138.1.133
+        source: 10.138.1.96/27
+        to_destination: 172.31.37.4
+        jump: 'DNAT'
+        state: 'present'
+# tpk-prod rules
+      - comment: 'DNAT tpk-prod to ml-sft'
+        table: 'nat'
+        destination: 10.138.2.139
+        source: 10.138.0.15
+        to_destination: 172.31.37.4
+        jump: 'DNAT'
+        state: 'present'
+# mc2 rules
+      - comment: 'DNAT mc2 to tele2'
+        table: 'nat'
+        destination: 172.31.179.167
+        source: 10.254.1.2
+        to_destination: 10.179.36.167
+        jump: 'DNAT'
+        state: 'present'
+# nmk rules
+      - comment: 'DNAT nmk to seven-tech'
+        table: 'nat'
+        destination: 172.31.254.254
+        source: 192.168.20.0/24,172.16.10.0/24
+        to_destination: 172.26.84.96
+        jump: 'DNAT'
+        state: 'present'
+# mobilepark rules
+      - comment: 'DNAT tele2 to mobilepark'
+        table: 'nat'
+        destination: 172.31.250.10
+        source: 10.179.36.47,10.179.36.48
+        to_destination: 192.168.123.10
+        jump: 'DNAT'
+        state: 'present'
+      - comment: 'DNAT mobilepark to tele2'
+        table: 'nat'
+        destination: 172.31.255.254
+        source: 192.168.140.81/32,192.168.123.10/32,192.168.123.248/32
+        to_destination: 10.77.47.35
+        jump: 'DNAT'
+        state: 'present'
+
+
+aws_key_id: default:ipsec@gpbmobile.ru
+aws_secret: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  32653463653666363732633235613334303433653332663533623261356438313661633430653865
+  3431333736626132363736316163383734326433333264310a653964666266303632636133303234
+  62623861353937633264613066333562386661626337366536376564363835336538643235333963
+  6139386261313236360a343232666534386233633938306135343932613032616262363064393532
+  35363130633862316236373530383532643734303437326332643564343764656239
+
+pass_hacluster: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  65613362616461316639623834323235346433643663613439653030313939626434313631323138
+  3132643936633762396466326363626134356430653335610a646266333137336462323138363237
+  30613837306239393738366138643233373630646636653933313662376334336237353434656337
+  6562316337616138390a373532623066383538343663363233633333343761646463613237636264
+  3331
+pacemaker_master_node: "{{ play_hosts | sort | first }}"
+
+pacemaker_cluster_properties:
+  - name: stonith-enabled
+    value: false
+
+pacemaker_resource_group: awsrtb
+
+resource_pcs:
+  - name: awseip
+    provider: 'ocf:heartbeat:awseip'
+    options:
+      - 'elastic_ip=194.242.120.97'
+      - 'allocation_id=eipalloc-4520E5AA'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: 'monitor'
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: 'stop'
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: ipsec
+    provider: 'systemd:ipsec'
+  - name: awsrtb1
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=10.0.0.0/8'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb2
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=192.168.0.0/16'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb3
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=172.16.0.0/13'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-a2pm-1
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=195.19.216.100/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-a2pm-2
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=195.19.216.101/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-a2pr-1
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=193.232.44.66/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-a2pr-2
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=193.232.44.67/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-gpb-1
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=195.225.38.193/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+  - name: awsrtb-gpb-2
+    provider: 'ocf:heartbeat:awsrtb'
+    options:
+      - 'rtb_id=rtb-B92E15DB'
+      - 'dst_cidr_block=195.225.38.209/32'
+      - 'vpc_id=vpc-324F8CC4'
+      - 'awscli=/usr/local/bin/aws'
+    op: 
+      - action: 'start'
+        op_options:
+          - 'timeout=60s'
+          - 'interval=0s'
+          - 'on-fail=restart'
+      - action: monitor
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=10s'
+          - 'on-fail=ignore'
+      - action: stop
+        op_options:
+          - 'timeout=60s' 
+          - 'interval=0s'
+          - 'on-fail=block'
+
+pacemaker_order_constraints:
+  - constraint: order
+    first_resource: awseip
+    first_resource_action: start
+    second_resource: ipsec
+    second_resource_action: start
+
+pacemaker_colocation_constraints:
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awseip
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb2
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb3
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-a2pm-1
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-a2pm-2
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-a2pr-1
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-a2pr-2
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-gpb-1
+  - constraint: colocation
+    action: add
+    source: awsrtb1
+    target: awsrtb-gpb-2
+  - constraint: colocation
+    action: add
+    source: awseip
+    target: ipsec

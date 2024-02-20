@@ -1,0 +1,11 @@
+keyboards = [
+  "leopold-fc750r-sp",
+]
+
+[[default_layouts]]
+0 = [
+  "kitty",
+]
+1 = [
+  "org.telegram.desktop",
+]

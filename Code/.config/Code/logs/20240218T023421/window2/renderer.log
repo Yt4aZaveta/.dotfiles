@@ -1,0 +1,6 @@
+2024-02-18 02:34:22.115 [info] Started local extension host with pid 33148.
+2024-02-18 02:34:24.775 [info] [perf] Render performance baseline is 22ms
+2024-02-18 02:35:42.945 [info] Started local extension host with pid 33574.
+2024-02-18 02:35:45.823 [info] [perf] Render performance baseline is 19ms
+2024-02-18 02:36:10.808 [error] [File Watcher (parcel)] Unexpected error: inotify_add_watch on '/home/yt4a/.config/google-chrome/Default/blob_storage/fe0ec052-5e5c-4353-a39c-922e2749211e' failed: No such file or directory (EUNKNOWN) (path: /home/yt4a)
+2024-02-18 02:36:10.811 [error] [File Watcher (universal)] restarting watcher after error: inotify_add_watch on '/home/yt4a/.config/google-chrome/Default/blob_storage/fe0ec052-5e5c-4353-a39c-922e2749211e' failed: No such file or directory

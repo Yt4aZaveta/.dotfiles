@@ -1,0 +1,83 @@
+2024-02-20 18:13:35.471 [info] Log level: Info
+2024-02-20 18:13:35.471 [info] Validating found git in: "git"
+2024-02-20 18:13:35.471 [info] Using git "2.43.2" from "git"
+2024-02-20 18:13:35.471 [info] > git rev-parse --show-toplevel [5ms]
+2024-02-20 18:13:35.471 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:35.471 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-20 18:13:35.478 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-02-20 18:13:35.487 [info] Open repository: /home/yt4a/Nextcloud/Customers/consul
+2024-02-20 18:13:35.501 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-20 18:13:35.501 [info] > git config --get commit.template [8ms]
+2024-02-20 18:13:35.514 [info] > git rev-parse --git-dir --git-common-dir [7ms]
+2024-02-20 18:13:35.518 [info] Open repository: /home/yt4a/Nextcloud/Customers/data-muztorg
+2024-02-20 18:13:35.542 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-146100-CS-146104 refs/remotes/CS-146100-CS-146104 [30ms]
+2024-02-20 18:13:35.550 [info] > git rev-parse --show-toplevel [9ms]
+2024-02-20 18:13:35.551 [info] > git config --get commit.template [15ms]
+2024-02-20 18:13:35.564 [info] > git status -z -uall [16ms]
+2024-02-20 18:13:35.577 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [14ms]
+2024-02-20 18:13:35.577 [info] > git rev-parse --git-dir --git-common-dir [19ms]
+2024-02-20 18:13:35.581 [info] Open repository: /home/yt4a/Nextcloud/Customers/gpbmobile
+2024-02-20 18:13:35.593 [info] > git config --get commit.template [17ms]
+2024-02-20 18:13:35.597 [info] > git rev-parse --show-toplevel [4ms]
+2024-02-20 18:13:35.597 [info] > git config --get commit.template [9ms]
+2024-02-20 18:13:35.622 [info] > git status -z -uall [5ms]
+2024-02-20 18:13:35.623 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-146100-CS-146104 refs/remotes/CS-146100-CS-146104 [19ms]
+2024-02-20 18:13:35.630 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-145460 refs/remotes/CS-145460 [7ms]
+2024-02-20 18:13:35.634 [info] > git rev-parse --git-dir --git-common-dir [23ms]
+2024-02-20 18:13:35.638 [info] Open repository: /home/yt4a/Nextcloud/Customers/open_ru
+2024-02-20 18:13:35.657 [info] > git status -z -uall [29ms]
+2024-02-20 18:13:35.660 [info] > git rev-parse --show-toplevel [3ms]
+2024-02-20 18:13:35.660 [info] > git config --get commit.template [8ms]
+2024-02-20 18:13:35.660 [info] > git config --get commit.template [14ms]
+2024-02-20 18:13:35.682 [info] > git status -z -uall [11ms]
+2024-02-20 18:13:35.682 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [6ms]
+2024-02-20 18:13:35.686 [info] > git rev-parse --git-dir --git-common-dir [21ms]
+2024-02-20 18:13:35.690 [info] Open repository: /home/yt4a/Nextcloud/Customers/stockmann
+2024-02-20 18:13:35.703 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [23ms]
+2024-02-20 18:13:35.706 [info] > git config --get commit.template [4ms]
+2024-02-20 18:13:35.707 [info] > git config --get commit.template [11ms]
+2024-02-20 18:13:35.731 [info] > git status -z -uall [18ms]
+2024-02-20 18:13:35.731 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-145460 refs/remotes/CS-145460 [13ms]
+2024-02-20 18:13:35.735 [info] > git status -z -uall [5ms]
+2024-02-20 18:13:35.738 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [14ms]
+2024-02-20 18:13:35.748 [warning] ENOENT: no such file or directory, open '/home/yt4a/Nextcloud/Customers/stockmann/.git/refs/remotes/origin/production'
+2024-02-20 18:13:35.749 [info] > git config --get commit.template [5ms]
+2024-02-20 18:13:35.755 [info] > git rev-parse refs/remotes/origin/production [7ms]
+2024-02-20 18:13:35.765 [info] > git status -z -uall [10ms]
+2024-02-20 18:13:35.766 [info] > git status -z -uall [5ms]
+2024-02-20 18:13:35.767 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [2ms]
+2024-02-20 18:13:35.786 [info] > git status -z -uall [5ms]
+2024-02-20 18:13:35.788 [info] > git config --get commit.template [12ms]
+2024-02-20 18:13:35.799 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [13ms]
+2024-02-20 18:13:35.805 [warning] ENOENT: no such file or directory, open '/home/yt4a/Nextcloud/Customers/stockmann/.git/refs/remotes/origin/production'
+2024-02-20 18:13:35.805 [info] > git rev-parse --show-toplevel [6ms]
+2024-02-20 18:13:35.805 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:35.807 [info] > git rev-parse refs/remotes/origin/production [2ms]
+2024-02-20 18:13:35.814 [info] > git status -z -uall [2ms]
+2024-02-20 18:13:35.881 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-20 18:13:35.881 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:35.956 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-20 18:13:35.956 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:36.038 [info] > git check-ignore -v -z --stdin [1ms]
+2024-02-20 18:13:36.106 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-20 18:13:36.106 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:36.129 [info] > git show --textconv :ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [7ms]
+2024-02-20 18:13:36.130 [info] > git ls-files --stage -- /home/yt4a/Nextcloud/Customers/consul/ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [1ms]
+2024-02-20 18:13:36.137 [info] > git cat-file -s 0bb1d2a18a67d0bc8a15fe7866e4df21e49166a7 [2ms]
+2024-02-20 18:13:36.740 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-20 18:13:36.740 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-20 18:13:38.536 [info] > git check-ignore -v -z --stdin [20ms]
+2024-02-20 18:13:38.537 [info] > git check-ignore -v -z --stdin [16ms]
+2024-02-20 18:13:38.537 [info] > git check-ignore -v -z --stdin [11ms]
+2024-02-20 18:13:38.537 [info] > git check-ignore -v -z --stdin [6ms]
+2024-02-20 18:13:38.537 [info] > git check-ignore -v -z --stdin [2ms]
+2024-02-20 18:18:06.682 [info] > git show --textconv :ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [7ms]
+2024-02-20 18:18:06.682 [info] > git ls-files --stage -- /home/yt4a/Nextcloud/Customers/consul/ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [1ms]
+2024-02-20 18:18:06.687 [info] > git cat-file -s 0bb1d2a18a67d0bc8a15fe7866e4df21e49166a7 [1ms]
+2024-02-20 18:18:07.069 [info] > git check-ignore -v -z --stdin [1ms]

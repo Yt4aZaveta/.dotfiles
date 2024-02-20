@@ -1,0 +1,27 @@
+{
+  "services": [{
+    "address": "10.48.0.119",
+    "name": "devtest.service.pulse.insure",
+    "tags": ["devtest.service.pulse.insure"],
+    "port": 80,
+    "id": "devtest.service.pulse.insure-backend-0-119",
+    "checks": [{"http": "http://10.48.0.119/healthz/", "id": "check-devtest.service.pulse.insure-1", "interval": "10s", "name": "http-check"}]
+  },
+  {
+    "address": "10.48.4.84",
+    "name": "devtest.service.pulse.insure",
+    "tags": ["devtest.service.pulse.insure"],
+    "port": 80,
+    "id": "devtest.service.pulse.insure-backend-4-84",
+    "checks": [{"http": "http://10.48.4.84/healthz/", "id": "check-devtest.service.pulse.insure-2", "interval": "10s", "name": "http-check"}]
+  },
+  {
+    "address": "10.48.2.78",
+    "name": "devtest.service.pulse.insure",
+    "tags": ["devtest.service.pulse.insure"],
+    "port": 80,
+    "id": "devtest.service.pulse.insure-backend-2-78",
+    "checks": [{"http": "http://10.48.2.78/healthz/", "id": "check-devtest.service.pulse.insure-3", "interval": "10s", "name": "http-check"}]
+  }
+  ]
+}
