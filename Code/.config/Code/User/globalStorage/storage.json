@@ -6,7 +6,8 @@
             "file:///home/yt4a/Templates": "-62d26e14",
             "file:///home/yt4a": "-62d26e14",
             "file:///home/yt4a/Nextcloud": "-62d26e14",
-            "file:///home/yt4a/Nextcloud/Customers": "-62d26e14"
+            "file:///home/yt4a/Nextcloud/Customers": "-62d26e14",
+            "file:///home/yt4a/downloads/Torrents": "-62d26e14"
         },
         "emptyWindows": {}
     },
@@ -18,6 +19,9 @@
         "folders": [
             {
                 "folderUri": "file:///home/yt4a/Nextcloud/Customers"
+            },
+            {
+                "folderUri": "file:///home/yt4a/downloads/Torrents"
             }
         ],
         "emptyWindows": []
@@ -60,7 +64,8 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor"
+                                    "label": "&&Reopen Closed Editor",
+                                    "enabled": false
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -75,6 +80,17 @@
                                     },
                                     "enabled": true,
                                     "label": "~/Nextcloud/Customers"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/yt4a/downloads/Torrents",
+                                        "path": "/home/yt4a/downloads/Torrents",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/downloads/Torrents"
                                 },
                                 {
                                     "id": "openRecentFolder",
