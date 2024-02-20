@@ -222,9 +222,6 @@ alias playavi='vlc *.avi'
 alias playmov='vlc *.mov'
 alias playmp4='vlc *.mp4'
 
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/.bin --work-tree=$HOME"
-
 # termbin
 alias tb="nc termbin.com 9999"
 
