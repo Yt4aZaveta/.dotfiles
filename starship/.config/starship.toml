@@ -4,7 +4,7 @@
 add_newline = true
 command_timeout = 2000
 
-format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python
+format = """$env_var$username$hostname$kubernetes$directory$git_branch$git_status$python
 $character
 """
 
@@ -23,21 +23,6 @@ disabled = false
 #warp-Drop ugly default prompt characters
 #success_symbol = ""
 #error_symbol = ""
-
-# ---
-
-[os]
-format = '[$symbol](bold white) '   
-disabled = false
-
-[os.symbols]
-Windows = ' '
-Arch = '󰣇'
-Ubuntu = ''
-Macos = '󰀵'
-Unknown = '󰠥'
-
-# ---y
 
 # Shows the username
 [username]
@@ -77,7 +62,7 @@ style = 'bold green'
 # Shows current git status
 [git_status]
 disabled = false
-format = '[ $all_status $ahead_behind]($style) '
+format = '[//](black bold) [ $all_status\[$ahead_behind\] ]($style) '
 style = 'bold green'
 conflicted = '🏳'
 up_to_date = ''
