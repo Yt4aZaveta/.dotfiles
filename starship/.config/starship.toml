@@ -4,7 +4,7 @@
 add_newline = true
 command_timeout = 2000
 
-format = """$env_var$username$hostname$kubernetes$directory$git_branch$git_status$python
+format = """$env_var$username$hostname$directory$git_branch$git_status
 $character
 """
 
@@ -46,17 +46,15 @@ home_symbol = "~"
 # read_only_style = "197"
 read_only = "  "
 format = "[//](black bold) [$path]($style)[$read_only]($read_only_style) "
-style = "#7ed1fb" # yellow bold
+#style = "#7ed1fb" # yellow bold
+style = "yellow bold"
 
 
 # Shows current git branch
 [git_branch]
-# symbol = " "
-#symbol = " "
+always_show_remote = true
 symbol = ""
-format = "[//](black bold) [$symbol $branch]($style)"
-# truncation_length = 0
-# truncation_symbol = "…/"
+format = "[//](black bold) [$symbol ($remote_name/)$branch]($style)"
 style = "bold green"
 
 # Shows current git status
@@ -81,7 +79,7 @@ deleted = " "
 # Shows kubernetes context and namespace
 [kubernetes]
 format = "via [󱃾 $context($namespace)](bold purple) "
-disabled = false
+disabled = true
 
 # ---
 
@@ -95,6 +93,7 @@ disabled = true
 disabled = true
 
 [python]
+disabled = true
 symbol = "󰌠"
 python_binary = ["./venv/bin/python", "python", "python3", "python2"]
 format = "[//](black bold) [${symbol} ${pyenv_prefix}(${version} )(($virtualenv) )]($style) "
