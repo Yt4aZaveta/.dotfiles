@@ -26,7 +26,7 @@
         "hyprland/language",
         "network",
         "pulseaudio",
-        "backlight",
+        // "backlight",
         "battery",
         "custom/notifications",
         "tray",
