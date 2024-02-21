@@ -22,5 +22,6 @@ swaylock \
 	--hide-keyboard-layout \
 	--fade-in 0.2 &
 
+hyprctl switchxkblayout leopold-fc750r-sp 0
 # sleep 2; ~/.config/hypr/scripts/screenshot_full
 # sleep 2; hyprctl clients >~/swaylock_hyprctl
