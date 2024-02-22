@@ -1,0 +1,128 @@
+2024-02-22 21:41:52.110 [info] Log level: Info
+2024-02-22 21:41:52.110 [info] Validating found git in: "git"
+2024-02-22 21:41:52.110 [info] Using git "2.43.2" from "git"
+2024-02-22 21:41:52.110 [info] > git rev-parse --show-toplevel [3ms]
+2024-02-22 21:41:52.110 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:41:52.110 [info] > git rev-parse --show-toplevel [3ms]
+2024-02-22 21:41:52.121 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-02-22 21:41:52.129 [info] Open repository: /home/yt4a/Nextcloud/Customers/consul
+2024-02-22 21:41:52.154 [info] > git rev-parse --show-toplevel [3ms]
+2024-02-22 21:41:52.155 [info] > git config --get commit.template [10ms]
+2024-02-22 21:41:52.169 [info] > git rev-parse --git-dir --git-common-dir [7ms]
+2024-02-22 21:41:52.173 [info] Open repository: /home/yt4a/Nextcloud/Customers/data-muztorg
+2024-02-22 21:41:52.185 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-146100-CS-146104 refs/remotes/CS-146100-CS-146104 [17ms]
+2024-02-22 21:41:52.195 [info] > git rev-parse --show-toplevel [11ms]
+2024-02-22 21:41:52.195 [info] > git config --get commit.template [17ms]
+2024-02-22 21:41:52.208 [info] > git status -z -uall [15ms]
+2024-02-22 21:41:52.220 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [13ms]
+2024-02-22 21:41:52.221 [info] > git rev-parse --git-dir --git-common-dir [20ms]
+2024-02-22 21:41:52.224 [info] Open repository: /home/yt4a/Nextcloud/Customers/gpbmobile
+2024-02-22 21:41:52.241 [info] > git config --get commit.template [21ms]
+2024-02-22 21:41:52.241 [info] > git config --get commit.template [7ms]
+2024-02-22 21:41:52.248 [info] > git rev-parse --show-toplevel [8ms]
+2024-02-22 21:41:52.269 [info] > git status -z -uall [14ms]
+2024-02-22 21:41:52.269 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-02-22 21:41:52.272 [info] Open repository: /home/yt4a/Nextcloud/Customers/open_ru
+2024-02-22 21:41:52.276 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-146100-CS-146104 refs/remotes/CS-146100-CS-146104 [28ms]
+2024-02-22 21:41:52.298 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-145460 refs/remotes/CS-145460 [36ms]
+2024-02-22 21:41:52.298 [info] > git status -z -uall [17ms]
+2024-02-22 21:41:52.298 [info] > git config --get commit.template [1ms]
+2024-02-22 21:41:52.298 [info] > git rev-parse --show-toplevel [6ms]
+2024-02-22 21:41:52.299 [info] > git config --get commit.template [12ms]
+2024-02-22 21:41:52.328 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [15ms]
+2024-02-22 21:41:52.328 [info] > git rev-parse --git-dir --git-common-dir [22ms]
+2024-02-22 21:41:52.332 [info] Open repository: /home/yt4a/Nextcloud/Customers/stockmann
+2024-02-22 21:41:52.340 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [21ms]
+2024-02-22 21:41:52.342 [info] > git status -z -uall [15ms]
+2024-02-22 21:41:52.342 [info] > git config --get commit.template [3ms]
+2024-02-22 21:41:52.369 [info] > git status -z -uall [6ms]
+2024-02-22 21:41:52.370 [info] > git config --get commit.template [15ms]
+2024-02-22 21:41:52.396 [info] > git status -z -uall [19ms]
+2024-02-22 21:41:52.397 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [28ms]
+2024-02-22 21:41:52.405 [warning] ENOENT: no such file or directory, open '/home/yt4a/Nextcloud/Customers/stockmann/.git/refs/remotes/origin/production'
+2024-02-22 21:41:52.406 [info] > git config --get commit.template [11ms]
+2024-02-22 21:41:52.406 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/CS-145460 refs/remotes/CS-145460 [18ms]
+2024-02-22 21:41:52.407 [info] > git rev-parse refs/remotes/origin/production [1ms]
+2024-02-22 21:41:52.417 [info] > git status -z -uall [5ms]
+2024-02-22 21:41:52.445 [info] > git status -z -uall [14ms]
+2024-02-22 21:41:52.445 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [28ms]
+2024-02-22 21:41:52.446 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-22 21:41:52.446 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:41:52.446 [info] > git config --get commit.template [8ms]
+2024-02-22 21:41:52.463 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/production refs/remotes/production [7ms]
+2024-02-22 21:41:52.470 [warning] ENOENT: no such file or directory, open '/home/yt4a/Nextcloud/Customers/stockmann/.git/refs/remotes/origin/production'
+2024-02-22 21:41:52.470 [info] > git status -z -uall [8ms]
+2024-02-22 21:41:52.472 [info] > git rev-parse refs/remotes/origin/production [2ms]
+2024-02-22 21:41:52.481 [info] > git status -z -uall [2ms]
+2024-02-22 21:41:52.498 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:41:52.498 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:41:52.624 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:41:52.625 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:41:52.665 [info] > git check-ignore -v -z --stdin [2ms]
+2024-02-22 21:41:52.792 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:41:52.792 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:41:52.816 [info] > git show --textconv :ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [7ms]
+2024-02-22 21:41:52.817 [info] > git ls-files --stage -- /home/yt4a/Nextcloud/Customers/consul/ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [1ms]
+2024-02-22 21:41:52.824 [info] > git cat-file -s 0bb1d2a18a67d0bc8a15fe7866e4df21e49166a7 [1ms]
+2024-02-22 21:41:53.382 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:41:53.382 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:42:21.538 [info] > git check-ignore -v -z --stdin [20ms]
+2024-02-22 21:42:21.538 [info] > git check-ignore -v -z --stdin [14ms]
+2024-02-22 21:42:21.538 [info] > git check-ignore -v -z --stdin [9ms]
+2024-02-22 21:42:21.538 [info] > git check-ignore -v -z --stdin [5ms]
+2024-02-22 21:42:21.539 [info] > git check-ignore -v -z --stdin [2ms]
+2024-02-22 21:42:22.468 [info] > git check-ignore -v -z --stdin [1ms]
+2024-02-22 21:42:32.513 [info] > git show --textconv :ansible/roles/ansible-consul/templates/service-devtest.service.pulse.insure.json.j2 [6ms]
+2024-02-22 21:42:32.514 [info] > git ls-files --stage -- /home/yt4a/Nextcloud/Customers/consul/ansible/roles/ansible-consul/templates/service-devtest.service.pulse.insure.json.j2 [2ms]
+2024-02-22 21:42:32.518 [info] > git cat-file -s b4a0da5d77901915794ed950d85c49c4791c0e80 [1ms]
+2024-02-22 21:42:34.493 [info] > git show --textconv :ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [6ms]
+2024-02-22 21:42:34.494 [info] > git ls-files --stage -- /home/yt4a/Nextcloud/Customers/consul/ansible/roles/ansible-consul/templates/service-prod.service.pulse.insure.json.j2 [1ms]
+2024-02-22 21:42:34.499 [info] > git cat-file -s 0bb1d2a18a67d0bc8a15fe7866e4df21e49166a7 [1ms]
+2024-02-22 21:42:37.191 [info] > git check-ignore -v -z --stdin [1ms]
+2024-02-22 21:42:45.700 [info] > git rev-parse --show-toplevel [8ms]
+2024-02-22 21:42:45.700 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:42:55.218 [info] Log level: Info
+2024-02-22 21:42:55.218 [info] Validating found git in: "git"
+2024-02-22 21:42:55.218 [info] Using git "2.43.2" from "git"
+2024-02-22 21:44:04.284 [info] > git rev-parse --show-toplevel [0ms]
+2024-02-22 21:44:04.290 [info] > git rev-parse --path-format=relative --show-toplevel [1ms]
+2024-02-22 21:44:49.283 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:44:49.283 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:47:34.263 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-22 21:47:34.269 [info] > git rev-parse --path-format=relative --show-toplevel [2ms]
+2024-02-22 21:47:34.276 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-02-22 21:47:34.276 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:47:42.392 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:47:42.398 [info] > git rev-parse --path-format=relative --show-toplevel [1ms]
+2024-02-22 21:47:42.405 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-02-22 21:47:42.405 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 21:47:49.933 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 21:47:49.938 [info] > git rev-parse --path-format=relative --show-toplevel [1ms]
+2024-02-22 21:47:49.945 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-02-22 21:47:49.945 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 22:22:25.908 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 22:22:25.914 [info] > git rev-parse --path-format=relative --show-toplevel [2ms]
+2024-02-22 22:22:25.919 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-02-22 22:22:25.919 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 22:22:27.397 [info] > git rev-parse --show-toplevel [2ms]
+2024-02-22 22:22:27.402 [info] > git rev-parse --path-format=relative --show-toplevel [1ms]
+2024-02-22 22:22:27.408 [info] > git rev-parse --git-dir --git-common-dir [1ms]
+2024-02-22 22:22:27.408 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+2024-02-22 22:22:46.209 [info] > git rev-parse --show-toplevel [1ms]
+2024-02-22 22:22:46.215 [info] > git rev-parse --path-format=relative --show-toplevel [1ms]
+2024-02-22 22:22:46.224 [info] > git rev-parse --git-dir --git-common-dir [2ms]
+2024-02-22 22:22:46.224 [info] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).

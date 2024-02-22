@@ -6,10 +6,12 @@
             "file:///home/yt4a/Templates": "-62d26e14",
             "file:///home/yt4a": "-62d26e14",
             "file:///home/yt4a/Nextcloud": "-62d26e14",
-            "file:///home/yt4a/Nextcloud/Customers": "-62d26e14",
-            "file:///home/yt4a/downloads/Torrents": "-62d26e14"
+            "file:///home/yt4a/downloads/Torrents": "-62d26e14",
+            "file:///home/yt4a/Nextcloud/Customers": "-62d26e14"
         },
-        "emptyWindows": {}
+        "emptyWindows": {
+            "1708627375159": "-62d26e14"
+        }
     },
     "profileAssociationsMigration": true,
     "telemetry.sqmId": "",
@@ -19,12 +21,13 @@
         "folders": [
             {
                 "folderUri": "file:///home/yt4a/Nextcloud/Customers"
-            },
-            {
-                "folderUri": "file:///home/yt4a/downloads/Torrents"
             }
         ],
-        "emptyWindows": []
+        "emptyWindows": [
+            {
+                "backupFolder": "1708627375159"
+            }
+        ]
     },
     "lastKnownMenubarData": {
         "menus": {
@@ -138,6 +141,39 @@
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/yt4a/.local/bin/coffee-waybar.sh",
+                                        "path": "/home/yt4a/.local/bin/coffee-waybar.sh",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/.local/bin/coffee-waybar.sh"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/yt4a/.local/bin/coffee-toggle.sh",
+                                        "path": "/home/yt4a/.local/bin/coffee-toggle.sh",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/.local/bin/coffee-toggle.sh"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/yt4a/.local/bin/coffee",
+                                        "path": "/home/yt4a/.local/bin/coffee",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/.local/bin/coffee"
                                 },
                                 {
                                     "id": "openRecentFile",
@@ -348,10 +384,6 @@
                         "label": "&&Close Editor"
                     },
                     {
-                        "id": "workbench.action.closeFolder",
-                        "label": "Close &&Folder"
-                    },
-                    {
                         "id": "workbench.action.closeWindow",
                         "label": "Clos&&e Window"
                     },
@@ -544,8 +576,7 @@
                                 },
                                 {
                                     "id": "workbench.action.toggleSidebarVisibility",
-                                    "label": "&&Primary Side Bar",
-                                    "checked": true
+                                    "label": "&&Primary Side Bar"
                                 },
                                 {
                                     "id": "workbench.action.toggleAuxiliaryBar",
@@ -558,8 +589,7 @@
                                 },
                                 {
                                     "id": "workbench.action.togglePanel",
-                                    "label": "&&Panel",
-                                    "checked": true
+                                    "label": "&&Panel"
                                 },
                                 {
                                     "id": "toggle.toggleCustomTitleBar",
@@ -865,8 +895,7 @@
                 "items": [
                     {
                         "id": "workbench.action.navigateBack",
-                        "label": "&&Back",
-                        "enabled": false
+                        "label": "&&Back"
                     },
                     {
                         "id": "workbench.action.navigateForward",
@@ -875,8 +904,7 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location",
-                        "enabled": false
+                        "label": "&&Last Edit Location"
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1196,7 +1224,8 @@
                     },
                     {
                         "id": "workbench.action.terminal.split",
-                        "label": "&&Split Terminal"
+                        "label": "&&Split Terminal",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1391,11 +1420,6 @@
             "workbench.action.closeActiveEditor": {
                 "label": "Ctrl+W",
                 "userSettingsLabel": "ctrl+w"
-            },
-            "workbench.action.closeFolder": {
-                "label": "Ctrl+K F",
-                "isNative": false,
-                "userSettingsLabel": "ctrl+k f"
             },
             "workbench.action.closeWindow": {
                 "label": "Alt+F4",
@@ -1775,8 +1799,7 @@
     },
     "windowsState": {
         "lastActiveWindow": {
-            "folder": "file:///home/yt4a/Nextcloud/Customers",
-            "backupPath": "/home/yt4a/.config/Code/Backups/4333df72e2d4914373225e95339dc288",
+            "backupPath": "/home/yt4a/.config/Code/Backups/1708627375159",
             "uiState": {
                 "mode": 0,
                 "x": 448,
@@ -1807,7 +1830,7 @@
             "editorPartMinWidth": 220,
             "titleBarHeight": 0,
             "activityBarWidth": 48,
-            "sideBarWidth": 282,
+            "sideBarWidth": 0,
             "statusBarHeight": 22,
             "windowBorder": false
         }
