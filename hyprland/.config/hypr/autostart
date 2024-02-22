@@ -50,7 +50,7 @@ nm-applet --indicator &
 # other
 hyprctl setcursor Sweet-cursors 24
 wl-paste --watch cliphist store &
-notify-send -a aurora "hello $(whoami)" &
+notify-send -a aurora "$(hyprctl splash)" &
 #libinput-gestures-setup start &
 
 # sleep 1
