@@ -28,6 +28,7 @@
         "pulseaudio",
         // "backlight",
         "battery",
+        "custom/coffee",
         "custom/notifications",
         "tray",
         "clock",
@@ -301,5 +302,13 @@
     "format-en": "EN",
     "format-ru": "RU",
     "keyboard-name": "leopold-fc750r-sp"
-  }
+    },
+    "custom/coffee": {
+      "format": "{}",
+      "exec": "~/.local/bin/coffee-waybar.sh",
+      "return-type": "json",
+      "signal": 12,
+      "interval": 1,
+      "on-click": "~/.local/bin/coffee-toggle.sh"
+    }
 }
