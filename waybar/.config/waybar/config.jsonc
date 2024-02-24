@@ -96,7 +96,7 @@
         "format": "{}",
         "exec": "~/.local/bin/updates",
         "on-click": "~/.local/bin/updates update",
-        "interval": 43200,
+        "interval": 600,
         "tooltip": true,
         // "tooltip-format": "{}",
         // "exec-tooltip": "~/.local/bin/updates tooltip"
