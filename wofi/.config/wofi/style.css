@@ -1,3 +1,4 @@
+@define-color bg rgba(22, 25, 37, 0.9);
 * {
   transition: 0.2s;
 }
@@ -13,7 +14,7 @@ window {
 /*
     background-color: #161925;
 */
-    background-color: transparent;
+    background-color: @bg;
     border-radius: 16px;
 }
 
@@ -85,7 +86,7 @@ window {
     margin: 0px;
     border: none;
     border-radius: 16px;
-    background-color: transparent;
+    background-color: @bg;
     min-height:32px;
     font-weight: bold;
 }
