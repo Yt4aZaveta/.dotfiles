@@ -1,5 +1,9 @@
 #░█▀▄▀█░▄▀▀▄░█▀▀▄░░▀░░▀█▀░▄▀▀▄░█▀▀▄░█▀▀
 #░█░▀░█░█░░█░█░▒█░░█▀░░█░░█░░█░█▄▄▀░▀▀▄
 #░▀░░▒▀░░▀▀░░▀░░▀░▀▀▀░░▀░░░▀▀░░▀░▀▀░▀▀▀
-xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 &
-xrandr --output DP-1 --mode 1920x1080 --pos 0x1080 &
+xrandr --output eDP --auto --pos 0x0 --output DisplayPort-0 --auto --pos 0x-1080
+
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+
+# For nemo
+gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
