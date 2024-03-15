@@ -1499,7 +1499,7 @@ runautostart(void)
 {
 	char *pathpfx;
 	char *path;
-	char *xdgdatahome;
+	char *xdgconfighome;
 	char *home;
 	struct stat sb;
 
@@ -1510,12 +1510,12 @@ runautostart(void)
 	/* if $XDG_DATA_HOME is set and not empty, use $XDG_DATA_HOME/dwm,
 	 * otherwise use ~/.local/share/dwm as autostart script directory
 	 */
-	xdgdatahome = getenv("XDG_DATA_HOME");
-	if (xdgdatahome != NULL && *xdgdatahome != '\0') {
+	xdgconfighome = getenv("XDG_CONFIG_HOME");
+	if (xdgconfighome != NULL && *xdgconfighome != '\0') {
 		/* space for path segments, separators and nul */
-		pathpfx = ecalloc(1, strlen(xdgdatahome) + strlen(dwmdir) + 2);
+		pathpfx = ecalloc(1, strlen(xdgconfighome) + strlen(dwmdir) + 2);
 
-		if (sprintf(pathpfx, "%s/%s", xdgdatahome, dwmdir) <= 0) {
+		if (sprintf(pathpfx, "%s/%s", xdgconfighome, dwmdir) <= 0) {
 			free(pathpfx);
 			return;
 		}
