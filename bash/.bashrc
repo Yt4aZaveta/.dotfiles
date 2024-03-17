@@ -235,4 +235,6 @@ colorscript random
 
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init bash)"
+
+### SETTING THE KUBERCTL COMPLETION ###
 source <(kubectl completion bash)
