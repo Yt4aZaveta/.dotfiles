@@ -10,7 +10,5 @@ gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty &
 # Set keyboard layouts
 setxkbmap -layout us,ru -option grp:caps_toggle &
 
-while true; do
-	xsetroot -name "$(date)"
-	sleep 1s
-done &
+killall dwmblocks &
+dwmblocks &
