@@ -7,7 +7,7 @@
   
   width = 265
   height = 100
-  offset = 10x70
+  offset = 0x25
   origin = top-right
 
   frame_width = 2
@@ -32,7 +32,7 @@
   history_length = 6
   title = Notification
   class = Notification
-  corner_radius = 20
+  corner_radius = 10
 
   mouse_left_click = close_current
   mouse_middle_click = do_action
