@@ -11,7 +11,8 @@
 # My bash config. Not much to see here; just some pretty standard stuff.
 
 ### EXPORTS
-export BROWSER=/usr/bin/google-chrome-stable
+#export BROWSER=/usr/bin/google-chrome-stable
+export BROWSER=/usr/bin/firefox
 export TERM="xterm-256color"
 export EDITOR="nvim"
 export HISTCONTROL=ignoredups:erasedups
@@ -37,6 +38,7 @@ bind -m vi-insert 'Control-l: clear-screen'
 ### PROMPT
 # This is commented out if using starship prompt
 #PS1='[\u@\h \W]\$ '
+#export PS1="\[\e[1;33m\][\[\e[m\]\[\e[1;33m\]\u\[\e[m\]\[\e[1;33m\]]\[\e[m\]\[\e[1;34m\][\[\e[m\]\[\e[1;34m\]\w\[\e[m\]\[\e[1;34m\]]\[\e[m\]\[\e[1;31m\]-\[\e[m\]\[\e[1;31m\]>\[\e[m\] "
 
 ### PATH
 if [ -d "$HOME/.bin" ]; then
@@ -237,4 +239,4 @@ colorscript random
 eval "$(starship init bash)"
 
 ### SETTING THE KUBERCTL COMPLETION ###
-source <(kubectl completion bash)
+#source <(kubectl completion bash)

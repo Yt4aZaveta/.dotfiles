@@ -1,24 +1,15 @@
 #Location: ~/.config/starship.toml
 #What_is_starship: https://starship.rs/
 
-add_newline = true
+add_newline = false
 command_timeout = 2000
 
-format = """$env_var$username$hostname$directory$git_branch$git_status
-$character
+format = """$username$directory$git_branch$git_status$character
 """
 
 [character]
-success_symbol = "╰⎯"
-error_symbol = "╰⎯"
-# ╭╴ ╰─
-
-[env_var]
-symbol = "╭╴"
-variable = "SHELL"
-format = "$symbol"
-disabled = false
-
+success_symbol = '[ ➜](bold green)'
+error_symbol = '[ ➜](bold red)'
 
 #warp-Drop ugly default prompt characters
 #success_symbol = ""
@@ -28,14 +19,14 @@ disabled = false
 [username]
 style_user = "yellow bold"
 style_root = "black bold"
-format = "[//](black bold) [$user](#2883ff) " # 2883ff
+format = '[\[$user\]](#2883ff)' # 2883ff
 disabled = false
 show_always = true
 
 # Shows the hostname
 [hostname]
 ssh_only = false
-format = "[//](black bold) [$hostname](bold blue) "
+format = "[$hostname](bold blue) "
 disabled = false
 
 # Shows current directory
@@ -43,24 +34,23 @@ disabled = false
 truncation_length = 0
 truncation_symbol = "…/"
 home_symbol = "~"
-# read_only_style = "197"
-read_only = "  "
-format = "[//](black bold) [$path]($style)[$read_only]($read_only_style) "
-#style = "#7ed1fb" # yellow bold
+read_only_style = "197 bold"
+read_only = '[]'
+format = '[\[$path\]]($style)[$read_only]($read_only_style)'
 style = "yellow bold"
 
 
 # Shows current git branch
 [git_branch]
 always_show_remote = true
-symbol = ""
-format = "[//](black bold) [$symbol ($remote_name/)$branch]($style)"
+symbol = '\['
+format = '[$symbol ($remote_name/)$branch]($style)'
 style = "bold green"
 
 # Shows current git status
 [git_status]
 #disabled = false
-format = "[ $all_status$ahead_behind]($style)"
+format = '[ $all_status$ahead_behind\]]($style)'
 style = "bold green"
 conflicted = "🏳"
 up_to_date = ""
