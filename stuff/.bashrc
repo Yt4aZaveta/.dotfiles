@@ -17,6 +17,11 @@ export TERM="xterm-256color"
 export EDITOR="nvim"
 export HISTCONTROL=ignoredups:erasedups
 
+### EXPORT FOR SSH-AGENT
+if [[ -z "${SSH_CONNECTION}" ]]; then
+	export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
 ### SET MANPAGER
 ### Uncomment only one of these!
 
