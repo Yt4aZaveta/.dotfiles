@@ -9,6 +9,9 @@ xsetroot -cursor_name left_ptr &
 # Fix Java programs
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+#GTK Theme
+export GTK_THEME='Catppuccin-Mocha-Standard-Mauve-dark:dark'
+
 # Polkit agent (Gnome)
 if [ ! "$(pidof polkit-gnome-authentication-agent-1)" ]; then
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -27,5 +30,6 @@ setxkbmap -layout us,ru -option grp:caps_toggle &
 
 xfce4-power-manager 2>&1 | tee -a /tmp/xfce4-power-manager.log &
 nm-applet --indicator 2>&1 | tee -a /tmp/nm-applet.log &
+remmina -i 2>&1 | tee -a /tmp/remmina.log &
 dunst 2>&1 | tee -a /tmp/dunst.log &
 nextcloud --background 2>&1 | tee -a /tmp/nextcloud.log &
