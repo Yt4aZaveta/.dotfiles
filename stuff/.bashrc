@@ -14,7 +14,7 @@
 #export BROWSER=/usr/bin/google-chrome-stable
 export BROWSER=/usr/bin/firefox
 export TERM="xterm-256color"
-export EDITOR="nvim"
+export EDITOR="helix"
 export HISTCONTROL=ignoredups:erasedups
 
 ### EXPORT FOR SSH-AGENT
@@ -26,7 +26,7 @@ fi
 ### Uncomment only one of these!
 
 ### "nvim" as manpager
-export MANPAGER="nvim +Man!"
+export MANPAGER="vim +Man!"
 
 ### "less" as manpager
 # export MANPAGER="less"
@@ -153,9 +153,10 @@ up() {
 # sudo
 alias sudo="sudo "
 
-# vim
-alias vim='nvim'
+# vim to helix
+alias vim='helix'
 alias svim='sudo -e'
+alias hx='helix'
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -238,7 +239,7 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-colorscript random
+# colorscript random
 
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init bash)"
